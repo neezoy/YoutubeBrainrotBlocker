@@ -56,6 +56,7 @@ function checkRedirects() {
 
 function buildCSS() {
   const blocks = [];
+  const extras = [];
 
   if (settings.blockShorts) {
     blocks.push(`
@@ -97,15 +98,24 @@ function buildCSS() {
 
   if (settings.hideRecommended) {
     blocks.push(`
-      /* ── Watch page: Up Next sidebar ── */
+      /* ── Watch page: Up Next sidebar + secondary column ── */
       ytd-watch-next-secondary-results-renderer,
-      ytd-compact-autoplay-renderer
+      ytd-compact-autoplay-renderer,
+      #secondary.ytd-watch-flexy
+    `);
+    extras.push(`
+      /* ── Watch page: center video when sidebar is gone ── */
+      ytd-watch-flexy[is-two-columns_] #primary.ytd-watch-flexy {
+        max-width: 1280px !important;
+        margin: 0 auto !important;
+      }
     `);
   }
 
-  return blocks
-    .map(b => `${b.trim()} { display: none !important; }`)
-    .join('\n\n');
+  return [
+    ...blocks.map(b => `${b.trim()} { display: none !important; }`),
+    ...extras.map(e => e.trim())
+  ].join('\n\n');
 }
 
 function applyStyles() {
