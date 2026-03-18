@@ -21,4 +21,4 @@ Install from the [Firefox Add-ons page](https://addons.mozilla.org/firefox/addon
 
 ## Requirements
 
-Firefox 103 or later.
+Firefox 140 or later.
