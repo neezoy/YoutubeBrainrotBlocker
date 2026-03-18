@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+  "name": "Youtube Brainrot Blocker",
+  "version": "1.0.0",
+  "description": "Block YouTube Shorts, hide recommended videos, and redirect home to subscriptions.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "brainrot-blocker@airo",
+      "strict_min_version": "103.0"
+    }
+  },
+  "permissions": [
+    "storage",
+    "*://*.youtube.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Youtube Brainrot Blocker",
+    "default_icon": {
+      "48": "icons/icon.png"
+    }
+  },
+  "icons": {
+    "48": "icons/icon.png",
+    "96": "icons/icon96.svg"
+  }
+}
